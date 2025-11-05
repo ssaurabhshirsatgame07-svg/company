@@ -1,165 +1,183 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FiMenu, 
-  FiX, 
-  FiSun, 
-  FiMoon,
-  FiChevronDown 
-} from 'react-icons/fi';
-import { useApp } from '../../../context/AppContext';
+import { FiMenu, FiX, FiChevronDown, FiChevronUp, FiSun, FiMoon } from 'react-icons/fi';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ darkMode, toggleDarkMode }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const { state, dispatch } = useApp();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const servicesRef = useRef(null);
 
   const navigation = [
     { name: 'Home', path: '/' },
-    { 
-      name: 'Services', 
+    {
+      name: 'Services',
       path: '/services',
       dropdown: [
         { name: 'Web Development', path: '/services/web-development' },
-        { name: 'E-Commerce', path: '/services/ecommerce' },
+        { name: 'Ecommerce Solutions', path: '/services/ecommerce' },
         { name: 'Mobile Apps', path: '/services/mobile-apps' },
         { name: 'Digital Marketing', path: '/services/digital-marketing' },
-        { name: 'SEO', path: '/services/seo' },
-        { name: 'Social Media', path: '/services/social-media' }
       ]
     },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'About', path: '/about' },
-    { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' }
   ];
 
-  return (
-    <motion.header 
-      className={`header ${scrolled ? 'scrolled' : ''} ${state.darkMode ? 'dark' : ''}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="container">
-        <div className="header-content">
-          {/* Logo */}
-          <motion.div 
-            className="logo"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link to="/">
-              <h2>Senka <br></br>Digital</h2>
-            </Link>
-          </motion.div>
+  // Handle scrolling and sticky header effect
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-          {/* Navigation */}
-          <nav className="nav">
-            <ul className="nav-list">
-              {navigation.map((item) => (
-                <li key={item.name} className="nav-item">
+  // Close mobile menu and dropdowns on outside click
+  useEffect(() => {
+    const closeDropdowns = (e) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target)) {
+        setServicesDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', closeDropdowns);
+    return () => document.removeEventListener('mousedown', closeDropdowns);
+  }, []);
+
+  return (
+    <header className={`site-header ${scrolled ? 'scrolled' : ''} ${darkMode ? 'dark' : ''}`}>
+      <div className="header-container">
+
+        {/* Logo */}
+        <Link to="/" className="logo" onClick={() => setMobileMenuOpen(false)}>
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }}
+          >
+            SenkaDigital
+          </motion.h2>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="desktop-nav">
+          <ul>
+            {navigation.map((item, idx) => (
+              <li key={idx} ref={item.name === 'Services' ? servicesRef : null}>
+                {item.dropdown ? (
+                  <button
+                    className={`nav-link ${servicesDropdownOpen ? 'active' : ''}`}
+                    onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                  >
+                    {item.name} {servicesDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
+                  </button>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+
+                {/* Dropdown Menu */}
+                {item.dropdown && (
+                  <AnimatePresence>
+                    {servicesDropdownOpen && (
+                      <motion.div
+                        className="dropdown-menu"
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                      >
+                        {item.dropdown.map((sub, idx2) => (
+                          <Link key={idx2} to={sub.path} className="dropdown-item">
+                            {sub.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Header Actions */}
+        <div className="header-actions">
+          <button className="theme-toggle" onClick={toggleDarkMode}>
+            {darkMode ? <FiSun /> : <FiMoon />}
+          </button>
+          <Link to="/contact" className="btn btn-primary desktop-only">
+            Let's Talk
+          </Link>
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
+
+      </div>
+
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.nav
+            className="mobile-nav"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+          >
+            <ul>
+              {navigation.map((item, idx) => (
+                <li key={idx}>
                   {item.dropdown ? (
-                    <div 
-                      className="nav-link dropdown-trigger"
-                      onMouseEnter={() => setServicesOpen(true)}
-                      onMouseLeave={() => setServicesOpen(false)}
+                    <button
+                      className="mobile-nav-link"
+                      onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                     >
-                      <span>{item.name}</span>
-                      <FiChevronDown />
-                      <AnimatePresence>
-                        {servicesOpen && (
-                          <motion.div 
-                            className="dropdown-menu"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                          >
-                            {item.dropdown.map((service) => (
-                              <Link 
-                                key={service.name} 
-                                to={service.path}
-                                className="dropdown-item"
-                              >
-                                {service.name}
-                              </Link>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                      {item.name} {servicesDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
+                    </button>
                   ) : (
-                    <Link 
+                    <Link
                       to={item.path}
-                      className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="mobile-nav-link"
                     >
                       {item.name}
                     </Link>
                   )}
+
+                  {item.dropdown && servicesDropdownOpen && (
+                    <div className="mobile-dropdown">
+                      {item.dropdown.map((sub, idx2) => (
+                        <Link
+                          key={idx2}
+                          to={sub.path}
+                          className="mobile-dropdown-item"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </li>
               ))}
+              <li>
+                <Link to="/contact" className="btn btn-primary full-width" onClick={() => setMobileMenuOpen(false)}>
+                  Get Free Quote
+                </Link>
+              </li>
             </ul>
-          </nav>
-
-          {/* Header Actions */}
-          <div className="header-actions">
-            <button 
-              className="theme-toggle"
-              onClick={() => dispatch({ type: 'TOGGLE_DARK_MODE' })}
-            >
-              {state.darkMode ? <FiSun /> : <FiMoon />}
-            </button>
-            
-            <button className="btn btn-primary">
-              Get Quote
-            </button>
-
-            <button 
-              className="mobile-menu-toggle"
-              onClick={() => dispatch({ type: 'TOGGLE_MOBILE_MENU' })}
-            >
-              {state.mobileMenuOpen ? <FiX /> : <FiMenu />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {state.mobileMenuOpen && (
-            <motion.div 
-              className="mobile-menu"
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-            >
-              <ul className="mobile-nav-list">
-                {navigation.map((item) => (
-                  <li key={item.name}>
-                    <Link 
-                      to={item.path}
-                      onClick={() => dispatch({ type: 'TOGGLE_MOBILE_MENU' })}
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.header>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 
