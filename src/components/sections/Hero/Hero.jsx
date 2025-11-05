@@ -56,7 +56,7 @@ const Hero = () => {
       setCurrentStat((prev) => (prev + 1) % stats.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  },  [stats.length]);
 
   const handlePlayDemo = () => {
     setIsPlaying(true);
