@@ -312,3 +312,20 @@
     text-align: center;
   }
 }
+
+
+
+
+/* Remove extra space below header when on mobile */
+@media (max-width: 768px) {
+  .site-header {
+    padding-bottom: 0 !important; /* Reduce bottom padding */
+  }
+
+  .hero,
+  .hero-section,
+  section:first-of-type {
+    padding-top: 50px !important; /* Adjust based on your header height */
+    margin-top: 0 !important;
+  }
+}
