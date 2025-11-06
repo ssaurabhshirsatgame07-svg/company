@@ -3194,9 +3194,18 @@ main {
 
 
 
+/* Mobile (up to 768px) */
 .App,
 main {
   padding-top: 50px !important;
+}
+
+/* Laptop and larger (769px and above) */
+@media (min-width: 769px) {
+  .App,
+  main {
+    padding-top: 100px !important; /* or whatever looks best */
+  }
 }
 
 
