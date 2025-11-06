@@ -7,7 +7,8 @@ import './Header.css';
 const Header = ({ darkMode, toggleDarkMode }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [desktopServicesDropdownOpen, setDesktopServicesDropdownOpen] = useState(false);
+  const [mobileServicesDropdownOpen, setMobileServicesDropdownOpen] = useState(false);
   const location = useLocation();
   const servicesRef = useRef(null);
 
@@ -35,11 +36,11 @@ const Header = ({ darkMode, toggleDarkMode }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu and dropdowns on outside click
+  // Close desktop dropdown when clicking outside
   useEffect(() => {
     const closeDropdowns = (e) => {
       if (servicesRef.current && !servicesRef.current.contains(e.target)) {
-        setServicesDropdownOpen(false);
+        setDesktopServicesDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', closeDropdowns);
@@ -67,10 +68,10 @@ const Header = ({ darkMode, toggleDarkMode }) => {
               <li key={idx} ref={item.name === 'Services' ? servicesRef : null}>
                 {item.dropdown ? (
                   <button
-                    className={`nav-link ${servicesDropdownOpen ? 'active' : ''}`}
-                    onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                    className={`nav-link ${desktopServicesDropdownOpen ? 'active' : ''}`}
+                    onClick={() => setDesktopServicesDropdownOpen(!desktopServicesDropdownOpen)}
                   >
-                    {item.name} {servicesDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
+                    {item.name} {desktopServicesDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
                   </button>
                 ) : (
                   <Link
@@ -84,7 +85,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
                 {/* Dropdown Menu */}
                 {item.dropdown && (
                   <AnimatePresence>
-                    {servicesDropdownOpen && (
+                    {desktopServicesDropdownOpen && (
                       <motion.div
                         className="dropdown-menu"
                         initial={{ opacity: 0, y: -10 }}
@@ -138,9 +139,9 @@ const Header = ({ darkMode, toggleDarkMode }) => {
                   {item.dropdown ? (
                     <button
                       className="mobile-nav-link"
-                      onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                      onClick={() => setMobileServicesDropdownOpen(!mobileServicesDropdownOpen)}
                     >
-                      {item.name} {servicesDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
+                      {item.name} {mobileServicesDropdownOpen ? <FiChevronUp /> : <FiChevronDown />}
                     </button>
                   ) : (
                     <Link
@@ -152,7 +153,8 @@ const Header = ({ darkMode, toggleDarkMode }) => {
                     </Link>
                   )}
 
-                  {item.dropdown && servicesDropdownOpen && (
+                  {/* Mobile Dropdown */}
+                  {item.dropdown && mobileServicesDropdownOpen && (
                     <div className="mobile-dropdown">
                       {item.dropdown.map((sub, idx2) => (
                         <Link
