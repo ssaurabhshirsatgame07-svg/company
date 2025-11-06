@@ -43,12 +43,12 @@ const Hero = () => {
   ];
 
   const features = [
-    "Custom Web Development",
-    "E-commerce Solutions", 
-    "Mobile Applications",
-    "Digital Marketing",
-    "SEO Optimization",
-    "Social Media Management"
+    // "Custom Web Development",
+    // "E-commerce Solutions", 
+    // "Mobile Applications",
+    // "Digital Marketing",
+    // "SEO Optimization",
+    // "Social Media Management"
   ];
 
   useEffect(() => {
@@ -161,6 +161,7 @@ const Hero = () => {
                 className="btn btn-secondary btn-hero"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                style={{ color: 'white' }}
                 onClick={handlePlayDemo}
               >
                 <div className="play-button">
@@ -170,7 +171,11 @@ const Hero = () => {
                     <FiPlay className="btn-icon" />
                   )}
                 </div>
-                <span>Watch Demo</span>
+              <span style={{ color: 'white' }}>Watch Demo</span>
+
+
+
+
               </motion.button>
             </motion.div>
 

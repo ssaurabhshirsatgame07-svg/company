@@ -162,3 +162,8 @@
     flex-direction: column;
   }
 }
+
+
+.text-white {
+  color: white;
+}
