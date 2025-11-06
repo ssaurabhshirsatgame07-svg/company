@@ -3183,14 +3183,11 @@ section {
 }
 
 /* Header Fix for Navigation Overlap */
-.App {
-  padding-top: var(--header-height);
+.App,
+main {
+  padding-top: 0 !important;
 }
 
-main {
-  padding-top: var(--header-height);
-  min-height: calc(100vh - var(--header-height));
-}
 
 section {
   scroll-margin-top: var(--header-height);

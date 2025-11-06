@@ -202,3 +202,12 @@
     margin-top: 0 !important;
   }
 }
+
+
+@media (max-width: 768px) {
+  .hero-section,
+  .hero {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+}

@@ -329,3 +329,19 @@
     margin-top: 0 !important;
   }
 }
+
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0.5rem 0 !important;
+  }
+  body {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+
