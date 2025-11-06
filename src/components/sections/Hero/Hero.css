@@ -167,3 +167,29 @@
 .text-white {
   color: white;
 }
+
+
+/* Fix space between header and hero section on mobile */
+@media (max-width: 768px) {
+  .site-header {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .hero,
+  .hero-section,
+  main section:first-of-type {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Remove any residual white space at top */
+  * {
+    scroll-margin-top: 0 !important;
+  }
+}

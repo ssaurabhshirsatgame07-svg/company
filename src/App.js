@@ -26,7 +26,7 @@ function App() {
       <Router>
         <div className="App">
           <Header />
-        <main style={{ paddingTop: '80px' }}> {/* Add this line */}
+        <main> {/* Add this line */}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />

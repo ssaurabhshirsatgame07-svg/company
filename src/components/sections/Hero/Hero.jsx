@@ -85,16 +85,16 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-        /* Badge */
-<motion.div
+    
+{/* <motion.div
   className="hero-badge"
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: 1 }}
   transition={{ delay: 0.2, duration: 0.6 }}
 >
   {/* <FiStar className="badge-icon" /> */}
-  <span>Trusted by 500+ Businesses Worldwide</span>
-</motion.div>
+  {/* <span>Trusted by 500+ Businesses Worldwide</span> */}
+{/* </motion.div> */}
 
 
             {/* Main Heading */}
