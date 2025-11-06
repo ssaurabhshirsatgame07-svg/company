@@ -2857,12 +2857,12 @@ section {
 
 /* Fix for navigation bar overlap */
 .App {
-  padding-top: 80px; /* Adjust this value based on your header height */
+  padding-top: 0px; /* Adjust this value based on your header height */
 }
 
 /* Or if you prefer to add it to main */
 main {
-  padding-top: 80px;
+  padding-top: 0px;
 }
 
 /* Ensure sections have proper spacing */
