@@ -3361,3 +3361,19 @@ header {
 }
 
 
+
+/* FINAL FIX: Remove extra space between header and hero on mobile */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 0.4rem 0 !important; /* reduce header height */
+  }
+
+  main,
+  .hero-section,
+  section:first-of-type {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+
