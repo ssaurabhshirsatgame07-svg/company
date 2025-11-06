@@ -3266,3 +3266,21 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+
+/* Remove unwanted space between header and hero section */
+.hero-section, 
+.banner, 
+main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin-bottom: 0 !important;
+}
