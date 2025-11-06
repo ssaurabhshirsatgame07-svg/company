@@ -3262,3 +3262,7 @@ section {
     padding: 1rem 0 !important;
   }
 }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
