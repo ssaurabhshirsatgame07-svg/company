@@ -3204,7 +3204,7 @@ main {
 @media (min-width: 769px) {
   .App,
   main {
-    padding-top: 100px !important; /* or whatever looks best */
+    padding-top: 80px !important; /* or whatever looks best */
   }
 }
 
