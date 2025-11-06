@@ -3284,3 +3284,27 @@ body {
 header {
   margin-bottom: 0 !important;
 }
+
+
+/* Fix header and hero spacing on mobile */
+@media (max-width: 768px) {
+  section:first-of-type {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+
+  .hero-section {
+    margin-top: 0 !important;
+    padding-top: 0px !important; /* reduced as necessary */
+  }
+
+  main {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  body {
+    padding-top: 0 !important;
+  }
+}
