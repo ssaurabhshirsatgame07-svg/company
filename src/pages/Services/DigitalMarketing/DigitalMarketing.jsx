@@ -141,13 +141,30 @@ const DigitalMarketing = () => {
   };
 
   return (
-    <motion.div  style={{ marginTop: '-100px' }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <ServiceLayout {...serviceData} />
-    </motion.div>
+    <>
+      <style>
+        {`
+          .service-page {
+            margin-top: -100px; /* Desktop top spacing */
+          }
+
+          @media (max-width: 768px) {
+            .service-page {
+              margin-top: -80px; /* Mobile top spacing adjustment */
+            }
+          }
+        `}
+      </style>
+
+      <motion.div
+        className="service-page"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <ServiceLayout {...serviceData} />
+      </motion.div>
+    </>
   );
 };
 

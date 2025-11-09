@@ -138,13 +138,32 @@ const MobileApps = () => {
   };
 
   return (
-    <motion.div  style={{ marginTop: '-100px' }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <ServiceLayout {...serviceData} />
-    </motion.div>
+    <>
+      <style>
+        {`
+          /* Adjust top spacing for desktop */
+          .service-page {
+            margin-top: -100px;
+          }
+
+          /* Reduce navbar overlap spacing for mobile */
+          @media (max-width: 768px) {
+            .service-page {
+              margin-top: -80px;
+            }
+          }
+        `}
+      </style>
+      
+      <motion.div
+        className="service-page"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <ServiceLayout {...serviceData} />
+      </motion.div>
+    </>
   );
 };
 

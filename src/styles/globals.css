@@ -3435,12 +3435,14 @@ header {
 
 
 
+
+
 /* Fix space between header and content */
 .hero-section,
 .main-content,
 section:first-of-type {
   margin-top: 0 !important;
-  padding-top: 80px; /* change this to header height */
+  padding-top: -50px; /* change this to header height */
 }
 
 /* On mobile, reduce padding even further */
@@ -3448,7 +3450,6 @@ section:first-of-type {
   .hero-section,
   section:first-of-type,
   main {
-    padding-top: 50px !important;
+    padding-top: -50px !important;
   }
 }
-

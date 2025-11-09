@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ServiceLayout from '../../../components/sections/ServiceLayout/ServiceLayout';
 import { 
-  // FiShoppingCart, 
   FiCreditCard, 
   FiTruck, 
   FiBarChart2,
@@ -152,14 +151,32 @@ const Ecommerce = () => {
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      style={{ marginTop: '-100px' }} // Fix top spacing under header
-    >
-      <ServiceLayout {...serviceData} />
-    </motion.div>
+    <>
+      <style>
+        {`
+          /* Adjust top spacing for desktop */
+          .service-page {
+            margin-top: -100px;
+          }
+
+          /* Reduce navbar overlap for mobile */
+          @media (max-width: 768px) {
+            .service-page {
+              margin-top: -80px;
+            }
+          }
+        `}
+      </style>
+
+      <motion.div
+        className="service-page"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <ServiceLayout {...serviceData} />
+      </motion.div>
+    </>
   );
 };
 

@@ -152,7 +152,7 @@ const SocialMedia = () => {
           /* Mobile Style: reduce pull effect slightly */
           @media (max-width: 768px) {
             .service-page {
-              margin-top: -100px;
+              margin-top: -80px;
             }
           }
         `}
