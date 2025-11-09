@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef, useEffect } from "react";
+import React, { useMemo, useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FiGrid,
@@ -25,7 +25,7 @@ const CATEGORIES = [
   { id: "marketing", name: "Growth/Marketing", icon: <FiTrendingUp /> },
 ];
 
-// demo items (replace with your real ones)
+// demo portfolio items (replace with real ones)
 const RAW_ITEMS = [
   {
     id: "rivaara-luxe",
@@ -127,11 +127,8 @@ const RAW_ITEMS = [
   },
 ];
 
-const spring = { type: "spring", stiffness: 140, damping: 18, mass: 0.8 };
-
 export default function Portfolio() {
   const [active, setActive] = useState("all");
-  const [hovered, setHovered] = useState(null);
   const [modal, setModal] = useState({ open: false, index: 0, item: null });
 
   const items = useMemo(() => {
@@ -139,41 +136,24 @@ export default function Portfolio() {
     return RAW_ITEMS.filter((i) => i.category === active);
   }, [active]);
 
-  // tilt effect
-  const handleMouseMove = (e, id) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    const rotY = (px - 0.5) * 10;
-    const rotX = (0.5 - py) * 10;
-    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
-    setHovered(id);
-  };
-  const handleMouseLeave = (e) => {
-    e.currentTarget.style.transform = "";
-    setHovered(null);
-  };
-
-  // modal navigation
-  const nextShot = () => {
-    if (!modal.item) return;
+  // ✅ Make next/prevShot stable
+  const nextShot = useCallback(() => {
     setModal((m) => ({
       ...m,
-      index: (m.index + 1) % (modal.item.shots?.length || 1),
+      index: (m.index + 1) % (m.item?.shots?.length || 1),
     }));
-  };
-  const prevShot = () => {
-    if (!modal.item) return;
+  }, []);
+
+  const prevShot = useCallback(() => {
     setModal((m) => ({
       ...m,
       index:
-        (m.index - 1 + (modal.item.shots?.length || 1)) %
-        (modal.item.shots?.length || 1),
+        (m.index - 1 + (m.item?.shots?.length || 1)) %
+        (m.item?.shots?.length || 1),
     }));
-  };
+  }, []);
 
-  // close on ESC
+  // ✅ Handle keyboard navigation safely
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") setModal({ open: false, item: null, index: 0 });
@@ -182,7 +162,7 @@ export default function Portfolio() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [modal.item]);
+  }, [nextShot, prevShot]);
 
   return (
     <section className="portfolio-page">
@@ -248,103 +228,97 @@ export default function Portfolio() {
       </header>
 
       {/* FILTERS */}
-     {/* FILTERS */}
-<motion.div
-  className="portfolio-filters"
-  initial={{ opacity: 0, y: 10 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.4 }}
->
-  {CATEGORIES.map((c) => (
-    <motion.button
-      key={c.id}
-      className={`pf-btn-pill ${active === c.id ? "active" : ""}`}
-      onClick={() => setActive(c.id)}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.97 }}
-    >
-      <span className="pf-icon">{c.icon}</span>
-      {c.name}
-    </motion.button>
-  ))}
-</motion.div>
+      <motion.div
+        className="portfolio-filters"
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+      >
+        {CATEGORIES.map((c) => (
+          <motion.button
+            key={c.id}
+            className={`pf-btn-pill ${active === c.id ? "active" : ""}`}
+            onClick={() => setActive(c.id)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <span className="pf-icon">{c.icon}</span>
+            {c.name}
+          </motion.button>
+        ))}
+      </motion.div>
 
+      {/* PROJECT GRID */}
+      <div className="project-grid">
+        {items.map((item) => (
+          <motion.div
+            key={item.id}
+            className="project-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            onClick={() => setModal({ open: true, index: 0, item })}
+          >
+            <div className="project-image">
+              <img src={item.cover} alt={item.title} loading="lazy" />
+              <span className="project-type">{item.category}</span>
+              <span className="view-shots">View Shots</span>
+            </div>
 
-      {/* GRID (masonry-like) */}
-   {/* GRID - NEW RESPONSIVE CARDS */}
-<div className="project-grid">
-  {items.map((item) => (
-    <motion.div
-      key={item.id}
-      className="project-card"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4 }}
-      onClick={() => setModal({ open: true, index: 0, item })}
-    >
-      {/* Image */}
-      <div className="project-image">
-        <img src={item.cover} alt={item.title} loading="lazy" />
-        <span className="project-type">{item.category}</span>
-        <span className="view-shots">View Shots</span>
+            <div className="project-details">
+              <div className="top-meta">
+                <span>{item.year}</span>
+                <span className="rating">
+                  <FiStar /> {item.rating}
+                </span>
+              </div>
+
+              <h3 className="project-title">{item.title}</h3>
+              <p className="project-sub">{item.subtitle}</p>
+
+              <div className="project-tags">
+                {item.tags.map((tag, idx) => (
+                  <span key={idx} className="tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="bottom-meta">
+                <span className="duration">
+                  <FiClock /> {item.duration}
+                </span>
+                <div className="links">
+                  {item.link && (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-link"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <FiExternalLink /> Live
+                    </a>
+                  )}
+                  {item.repo && (
+                    <a
+                      href={item.repo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="p-link"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <FiGithub /> Code
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
-
-      {/* Content */}
-      <div className="project-details">
-        <div className="top-meta">
-          <span>{item.year}</span>
-          <span className="rating">
-            <FiStar /> {item.rating}
-          </span>
-        </div>
-
-        <h3 className="project-title">{item.title}</h3>
-        <p className="project-sub">{item.subtitle}</p>
-
-        <div className="project-tags">
-          {item.tags.map((tag, idx) => (
-            <span key={idx} className="tag">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="bottom-meta">
-          <span className="duration">
-            <FiClock /> {item.duration}
-          </span>
-          <div className="links">
-            {item.link && (
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noreferrer"
-                className="p-link"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FiExternalLink /> Live
-              </a>
-            )}
-            {item.repo && (
-              <a
-                href={item.repo}
-                target="_blank"
-                rel="noreferrer"
-                className="p-link"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <FiGithub /> Code
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  ))}
-</div>
-
 
       {/* CTA STRIP */}
       <section className="portfolio-cta">
@@ -414,13 +388,3 @@ export default function Portfolio() {
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-

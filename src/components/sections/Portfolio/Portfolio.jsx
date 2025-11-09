@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiExternalLink, FiGithub, FiFilter } from 'react-icons/fi';
 
@@ -84,6 +84,12 @@ const Portfolio = () => {
   const filteredItems = activeFilter === 'all' 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === activeFilter);
+
+  useEffect(() => {
+    // Example animation or effect logic (if needed)
+    // Runs when activeFilter changes
+    console.log(`The selected category filter is now ${activeFilter}`);
+  }, [activeFilter]); // ✅ Proper dependency handling
 
   return (
     <section className="portfolio" id="portfolio">
