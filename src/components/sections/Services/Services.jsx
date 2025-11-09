@@ -14,14 +14,11 @@ import {
   FiStar,
   FiArrowRight,
   FiAward,
-    FiCheck ,
-  FiZap,
-  FiShield
+  FiCheck
 } from 'react-icons/fi';
 
 const Services = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [hoveredService, setHoveredService] = useState(null);
 
   const categories = [
     { id: 'all', name: 'All Services', icon: <FiTrendingUp />, count: 8 },
@@ -216,8 +213,6 @@ const Services = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                onHoverStart={() => setHoveredService(service.id)}
-                onHoverEnd={() => setHoveredService(null)}
                 layout
               >
                 {/* Service Header */}

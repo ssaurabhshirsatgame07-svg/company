@@ -23,15 +23,15 @@ const Footer = () => {
     { name: 'Contact', path: '/contact' }
   ];
 
-  const services = [
-    'Shopify Development',
-    'WordPress Development',
-    'Website Development',
-    'Mobile App Development',
-    'SEO Optimization',
-    'Digital Marketing',
-    'Social Media Management'
-  ];
+  // const services = [
+  //   'Shopify Development',
+  //   'WordPress Development',
+  //   'Website Development',
+  //   'Mobile App Development',
+  //   'SEO Optimization',
+  //   'Digital Marketing',
+  //   'Social Media Management'
+  // ];
 
   const socialLinks = [
     { icon: <FiFacebook />, url: '#' },

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ServiceLayout from '../../../components/sections/ServiceLayout/ServiceLayout';
 import { 
-  FiShoppingCart, 
+  // FiShoppingCart, 
   FiCreditCard, 
   FiTruck, 
   FiBarChart2,
