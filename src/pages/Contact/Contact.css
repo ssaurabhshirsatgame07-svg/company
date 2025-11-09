@@ -191,3 +191,14 @@
   position: relative;
   z-index: 1;
 }
+
+
+
+
+/* Mobile spacing adjustment for header-to-hero gap */
+@media (max-width: 600px) {
+  .contact-hero {
+    margin-top: 0 !important; /* prevents overlap with header */
+    padding-top: 17px !important; /* ensures full hero visibility */
+  }
+}

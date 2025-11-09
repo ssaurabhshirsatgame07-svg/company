@@ -750,3 +750,10 @@
 
 
 
+/* Mobile spacing adjustment for header-to-hero gap */
+@media (max-width: 600px) {
+  .portfolio-hero {
+    margin-top: -100px; /* reduce the negative spacing */
+    padding-top: 110px; /* increase internal space above content */
+  }
+}

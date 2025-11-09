@@ -3423,3 +3423,32 @@ header {
     margin-bottom: 0.4rem !important; /* Reduce space between individual buttons */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Fix space between header and content */
+.hero-section,
+.main-content,
+section:first-of-type {
+  margin-top: 0 !important;
+  padding-top: 80px; /* change this to header height */
+}
+
+/* On mobile, reduce padding even further */
+@media (max-width: 768px) {
+  .hero-section,
+  section:first-of-type,
+  main {
+    padding-top: 50px !important;
+  }
+}
+

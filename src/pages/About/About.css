@@ -208,3 +208,17 @@
   z-index: 1;
 }
 
+
+
+
+
+
+
+/* Mobile spacing adjustment for header-to-hero gap */
+@media (max-width: 600px) {
+  .about-hero {
+    margin-top: 0 !important; /* Resets negative margin if applied elsewhere */
+    padding-top: 20px !important; /* Increase space under fixed header */
+  }
+}
+

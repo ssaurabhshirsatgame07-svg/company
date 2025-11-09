@@ -141,13 +141,32 @@ const SocialMedia = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <ServiceLayout {...serviceData} />
-    </motion.div>
+    <>
+      <style>
+        {`
+          /* Desktop Style: remove header gap aggressively */
+          .service-page {
+            margin-top: -100px;
+          }
+
+          /* Mobile Style: reduce pull effect slightly */
+          @media (max-width: 768px) {
+            .service-page {
+              margin-top: -100px;
+            }
+          }
+        `}
+      </style>
+
+      <motion.div
+        className="service-page"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <ServiceLayout {...serviceData} />
+      </motion.div>
+    </>
   );
 };
 
