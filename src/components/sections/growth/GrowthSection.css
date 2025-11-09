@@ -1,0 +1,73 @@
+.growth-section {
+  padding: 100px 20px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.growth-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.growth-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.growth-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+}
+
+.growth-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  padding-top: 20px;
+}
+
+.growth-card {
+  background: var(--bg-primary);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  text-align: left;
+}
+
+.growth-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.growth-icon {
+  font-size: 2.4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.growth-value {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  display: block;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .growth-title {
+    font-size: 2.2rem;
+  }
+
+  .growth-description {
+    font-size: 1rem;
+  }
+
+  .growth-value {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,210 @@
+/* Main About Page */
+.about-page {
+  overflow-x: hidden;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+/* Hero Section */
+.about-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 6rem var(--spacing-xl);
+  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-size: 1.25rem;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Stats */
+.about-stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 4rem var(--spacing-xl);
+}
+
+.stats-card {
+  background: var(--bg-primary);
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.stats-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.stats-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Mission & Vision */
+.mission-vision {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  padding: 6rem var(--spacing-xl);
+}
+
+.mv-card {
+  background: var(--bg-primary);
+  padding: 2.5rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+}
+
+.mv-title {
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.mv-list {
+  margin-top: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.mv-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+/* Core Values */
+.core-values {
+  padding: 6rem var(--spacing-xl);
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.75rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  background: var(--bg-primary);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.value-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.value-card h3 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+/* Team Placeholder */
+.team-placeholder {
+  padding: 4rem var(--spacing-xl);
+  text-align: center;
+  background: linear-gradient(135deg, #f4f4f9, #f0f2f5);
+  border-radius: var(--radius-xl);
+  margin: 4rem var(--spacing-xl);
+}
+
+/* Call to Action */
+.about-cta {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  padding: 6rem var(--spacing-xl);
+  color: white;
+  text-align: center;
+}
+
+.about-cta h2 {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+}
+
+.about-cta p {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Responsive Breaks */
+@media (max-width: 768px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    padding: 4rem var(--spacing-lg);
+  }
+
+  .about-stats-section,
+  .mission-vision,
+  .core-values {
+    padding: 4rem var(--spacing-lg);
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+}
+
+.about-hero {
+  margin-top: -40px; /* pulls hero up under header */
+  padding-top: 140px; /* adds space inside for clean top breathing room */
+  position: relative;
+  z-index: 1;
+}
+

@@ -59,15 +59,15 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <FiMail />
-                <span>hello@senkadigital.com</span>
+                <span>support@senkagmail.com</span>
               </div>
               <div className="contact-item">
                 <FiPhone />
-                <span>+1 (555) 123-4567</span>
+                <span>+19 8888736376</span>
               </div>
               <div className="contact-item">
                 <FiMapPin />
-                <span>New York, NY 10001</span>
+                <span>Banner , Pune</span>
               </div>
             </div>
             <div className="social-links">
@@ -103,21 +103,25 @@ const Footer = () => {
           </motion.div>
 
           {/* Services */}
-          <motion.div 
-            className="footer-section"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h4>Our Services</h4>
-            <ul className="footer-links">
-              {services.map((service) => (
-                <li key={service}>
-                  <a href="/services">{service}</a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+         {/* Services */}
+<motion.div 
+  className="footer-section"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+>
+  <h4>Our Services</h4>
+  <ul className="footer-links">
+    <li><Link to="/services/ecommerce">Shopify Development</Link></li>
+    <li><Link to="/services/wordpress">WordPress Development</Link></li>
+    <li><Link to="/services/web-development">Website Development</Link></li>
+    <li><Link to="/services/mobile-apps">Mobile App Development</Link></li>
+    <li><Link to="/services/seo">SEO Optimization</Link></li>
+    <li><Link to="/services/digital-marketing">Digital Marketing</Link></li>
+    <li><Link to="/services/social-media">Social Media Management</Link></li>
+  </ul>
+</motion.div>
+
 
           {/* Newsletter */}
           <motion.div 

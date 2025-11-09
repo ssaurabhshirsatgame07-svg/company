@@ -22,6 +22,7 @@ const Header = ({ darkMode, toggleDarkMode }) => {
         { name: 'Ecommerce Solutions', path: '/services/ecommerce' },
         { name: 'Mobile Apps', path: '/services/mobile-apps' },
         { name: 'Digital Marketing', path: '/services/digital-marketing' },
+        { name: 'Seo', path: '/services/seo' },
       ]
     },
     { name: 'Portfolio', path: '/portfolio' },

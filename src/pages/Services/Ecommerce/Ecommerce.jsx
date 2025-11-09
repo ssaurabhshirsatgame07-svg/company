@@ -9,6 +9,7 @@ import {
   FiUsers,
   FiSettings
 } from 'react-icons/fi';
+import { FaWordpress, FaOpencart, FaShopify } from 'react-icons/fa'; // Updated Icons
 
 const Ecommerce = () => {
   const serviceData = {
@@ -17,34 +18,44 @@ const Ecommerce = () => {
     description: "We create powerful e-commerce solutions that convert visitors into customers. From Shopify stores to custom platforms, we build online stores that drive sales and growth.",
     features: [
       {
-        icon: <FiShoppingCart />,
+        icon: <FaShopify />,
         title: "Shopify Development",
         description: "Custom Shopify stores with unique themes and seamless app integrations"
       },
       {
+        icon: <FaWordpress />,
+        title: "WordPress Development",
+        description: "SEO-friendly and fully customizable websites using themes and plugins"
+      },
+      {
+        icon: <FaOpencart />,
+        title: "WooCommerce Stores",
+        description: "Tailored WooCommerce store setups powered by WordPress for scalability"
+      },
+      {
         icon: <FiCreditCard />,
         title: "Payment Integration",
-        description: "Secure payment gateways including Stripe, PayPal, and custom solutions"
+        description: "Secure payment gateways including Stripe, Razorpay, PayPal, and others"
       },
       {
         icon: <FiTruck />,
         title: "Inventory Management",
-        description: "Advanced inventory tracking and management systems"
+        description: "Streamlined inventory and order management systems with real-time sync"
       },
       {
         icon: <FiBarChart2 />,
         title: "Analytics & Reporting",
-        description: "Comprehensive sales tracking and business intelligence dashboards"
+        description: "Track store performance and customer activity with in-depth dashboards"
       },
       {
         icon: <FiUsers />,
         title: "Customer Management",
-        description: "CRM integration and customer relationship management tools"
+        description: "CRM integrations and loyalty program support for repeat customers"
       },
       {
         icon: <FiSettings />,
         title: "Custom Features",
-        description: "Tailored functionality to meet your specific business needs"
+        description: "Bespoke e-commerce features tailored to your business needs"
       }
     ],
     pricing: {
@@ -54,11 +65,11 @@ const Ecommerce = () => {
           price: "$2,499",
           description: "Perfect for starting your online business",
           features: [
-            "Shopify Setup",
-            "Custom Theme",
+            "Shopify/WooCommerce Setup",
+            "Custom Theme or Template",
             "Product Catalog (up to 50)",
-            "Payment Integration",
-            "Basic SEO",
+            "Single Payment Integration",
+            "Basic SEO Setup",
             "2 Months Support"
           ]
         },
@@ -68,10 +79,10 @@ const Ecommerce = () => {
           description: "For growing e-commerce businesses",
           popular: true,
           features: [
-            "Custom Shopify Development",
+            "Custom Development",
             "Advanced Features",
             "Product Catalog (up to 500)",
-            "Multiple Payment Methods",
+            "Multiple Payment & Shipping Options",
             "Inventory Management",
             "Advanced SEO",
             "4 Months Support"
@@ -82,11 +93,11 @@ const Ecommerce = () => {
           price: "$9,999+",
           description: "For large-scale e-commerce operations",
           features: [
-            "Custom Platform",
+            "Custom E-commerce Platform",
             "Unlimited Products",
             "Multi-vendor Support",
             "Custom ERP Integration",
-            "Advanced Analytics",
+            "Advanced Analytics & Reporting",
             "Dedicated Support",
             "Training & Documentation"
           ]
@@ -135,16 +146,17 @@ const Ecommerce = () => {
       },
       {
         question: "How do you handle payment gateway integration?",
-        answer: "We integrate secure payment solutions like Stripe, PayPal, Square, and custom merchant accounts with PCI compliance."
+        answer: "We integrate secure payment solutions like Stripe, PayPal, Razorpay, and others, ensuring full PCI compliance."
       }
     ]
   };
 
   return (
-    <motion.div
+    <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      style={{ marginTop: '-100px' }} // Fix top spacing under header
     >
       <ServiceLayout {...serviceData} />
     </motion.div>

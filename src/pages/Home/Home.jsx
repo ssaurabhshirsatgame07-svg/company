@@ -6,6 +6,9 @@ import Services from '../../components/sections/Services/Services';
 import Portfolio from '../../components/sections/Portfolio/Portfolio';
 import Testimonials from '../../components/sections/Testimonials/Testimonials';
 import Contact from '../../components/sections/Contact/Contact';
+import GrowthSection from '../../components/sections/growth/GrowthSection';
+
+
 
 const Home = () => {
   return (
@@ -18,6 +21,7 @@ const Home = () => {
       <Services />
       <Portfolio />
       <Testimonials />
+      <GrowthSection/>
       <Contact />
     </motion.div>
   );

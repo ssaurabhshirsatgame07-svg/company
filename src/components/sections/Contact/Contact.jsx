@@ -51,19 +51,19 @@ const Contact = () => {
     {
       icon: <FiMail />,
       title: "Email Us",
-      details: "hello@senkadigital.com",
+      details: "support@senkahmail.com",
       description: "Send us an email anytime"
     },
     {
       icon: <FiPhone />,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
+      details: "+19 8888736376",
       description: "Mon to Fri from 9am to 6pm"
     },
     {
       icon: <FiMapPin />,
       title: "Visit Us",
-      details: "New York, NY 10001",
+      details: "banner, Pune",
       description: "Come say hello at our office"
     },
     {

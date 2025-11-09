@@ -1,4 +1,6 @@
 import React from 'react';
+import ScrollToTop from "./components/ScrollToTop";
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Header from './components/common/Header/Header';
@@ -25,9 +27,11 @@ function App() {
     <AppProvider>
       <Router>
         <div className="App">
+            <ScrollToTop />
           <Header />
         <main> {/* Add this line */}
             <Routes>
+             
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
               <Route path="/services/web-development" element={<WebDevelopment />} />

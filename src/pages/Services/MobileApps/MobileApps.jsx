@@ -138,7 +138,7 @@ const MobileApps = () => {
   };
 
   return (
-    <motion.div
+    <motion.div  style={{ marginTop: '-100px' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
